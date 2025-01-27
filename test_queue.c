@@ -152,6 +152,20 @@ static char *test_queue_get_from_empty() {
 	return 0;
 }
 
+static char *test_queue_fail_example() {
+	const int queue_size = 5;
+	struct queue *test_queue = queue_init(queue_size);
+	QUEUE_ERROR_CHECK_ONLY(test_queue->error);
+	for (int i = 0; i < queue_size+100; i++) {
+		queue_add(test_queue, i);
+		// must fail here by not enough space
+		QUEUE_ERROR_CHECK(test_queue->error);
+	}
+	queue_free(test_queue);
+	return 0;
+}
+
+
 static char *tests() {
 	mu_run_test(test_queue_init_basic1);
 	mu_run_test(test_queue_add1);
@@ -160,6 +174,7 @@ static char *tests() {
 	mu_run_test(test_queue_get2);
 	mu_run_test(test_queue_overflow);
 	mu_run_test(test_queue_get_from_empty);
+	mu_run_test(test_queue_fail_example);
 	return 0;
 }
 
