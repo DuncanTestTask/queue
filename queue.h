@@ -3,7 +3,7 @@ struct queue {
 	int *data;	// stored data
 	int low;	// low mark, extends on left on add
 	int high;	// hight mark, reduces on left on pop
-	int count;	// curent amount elements (count <= max)
+	int count;	// current amount elements (count <= max)
 	int max;	// max number elements of the queue
 	int error;	// error state
 				// 0 - OK
