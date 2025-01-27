@@ -1,0 +1,9 @@
+BasedOnStyle: Google.......
+#Standard: Cpp17
+ColumnLimit: 140
+IndentWidth: 4
+TabWidth: 4
+UseTab: Always
+#UseCRLF : false
+AllowAllParametersOfDeclarationOnNextLine: true
+ExperimentalAutoDetectBinPacking: false
