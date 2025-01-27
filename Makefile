@@ -7,8 +7,18 @@ OBJ=$(SRC:.c=.o)
 TEST_SRC=test_queue.c
 TEST_OBJ=$(TEST_SRC:.c=.o)
 
-CFLAGS += -g -O0
-#CFLAGS += -Os
+ifdef DEBUG
+CFLAGS = -g -O0  -Wall -DDEBUG
+else
+CFLAGS = -Os -Wall
+endif
+
+help:
+	@echo "Usage: make all|test|testing [DEBUG=1]"
+	@echo "make all makes lib.a"
+	@echo "make test makes test exe"
+	@echo "make testing runs tests"
+	@echo "DEBUG=1 verbose output in runtime"
 
 all: lib.a
 
@@ -23,5 +33,7 @@ test: $(TEST_OBJ) lib.a
 
 testing: test
 	./test
+
+.PHONY: clean
 clean:
-	rm -f main test lib.a $(OBJ)
+	rm -f main test lib.a $(OBJ) $(TEST_OBJ)
