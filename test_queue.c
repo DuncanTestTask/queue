@@ -138,6 +138,23 @@ static char *test_queue_overflow() {
 	return 0;
 }
 
+static char *test_queue_overwriting_buffer1() {
+	const int queue_size = 5;
+	struct queue *test_queue = queue_init(queue_size);
+	QUEUE_ERROR_CHECK_ONLY(test_queue->error);
+	for (int i = 0; i < 100; i++) {
+		queue_add(test_queue, i);
+		QUEUE_ERROR_CHECK_ONLY(test_queue->error);
+		int a = queue_get(test_queue);
+		QUEUE_ERROR_CHECK_ONLY(test_queue->error);
+		mu_assert("check value", a == i);
+	}
+	queue_free(test_queue);
+	return 0;
+}
+
+
+
 static char *test_queue_get_from_empty() {
 	const int queue_size = 3;
 	struct queue *test_queue = queue_init(queue_size);
@@ -160,6 +177,7 @@ static char *tests() {
 	mu_run_test(test_queue_get2);
 	mu_run_test(test_queue_overflow);
 	mu_run_test(test_queue_get_from_empty);
+	mu_run_test(test_queue_overwriting_buffer1);
 	return 0;
 }
 
