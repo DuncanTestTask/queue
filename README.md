@@ -1,5 +1,6 @@
 # queue
-simple queue module
+Simple queue module
+![GitHub tag status](https://img.shields.io/github/checks-status/DuncanTestTask/queue/rc1)
 
 A trivial queue that only does that it needs with unit tests.
 
@@ -8,10 +9,10 @@ Make a test task
 
 # key points
 
-- Pure C
+- Pure C code
 - Minimal dependency
 - Fully functional code
-- Test coverage
-- extra
-- documentation
 
+#
+
+![add](images/add.gif) ![get](images/get.gif)
