@@ -1,6 +1,7 @@
 #include "queue.h"
-#if defined(DEBUG)
+
 #include <stdio.h>
+#if defined(DEBUG)
 #define DEBUG_PRINTF(x) printf x
 #else
 #define DEBUG_PRINTF(x)
@@ -21,11 +22,25 @@ void queue_free(struct queue *queue) {
 }
 
 void queue_add(struct queue *queue, int item) {
-    DEBUG_PRINTF(("DEBUG: queue_add begin capacity=%d/%d rang=%d/%d\n", queue->count, queue->max, queue->low, queue->high));
-
+	DEBUG_PRINTF(("DEBUG: queue_add %d begin capacity=%d/%d range=%d/%d\n", item, queue->count, queue->max, queue->low, queue->high));
+	if (queue->count == queue->max) {
+		fprintf(stderr, "not enough free space\n");
+		return;
+	}
+	queue->data[queue->low--] = item;
+	queue->count++;
+	if (queue->low < 0) {
+		queue->low = queue->max - 1;
+	}
+	DEBUG_PRINTF(("DEBUG: queue_add end capacity=%d/%d rang=%d/%d\n", queue->count, queue->max, queue->low, queue->high));
 }
 int queue_get(struct queue *queue) {
-    DEBUG_PRINTF(("DEBUG: queue_get begin capacity=%d/%d rang=%d/%d\n", queue->count, queue->max, queue->low, queue->high));
-	int return_value=0;
+	DEBUG_PRINTF(("DEBUG: queue_get begin capacity=%d/%d range=%d/%d\n", queue->count, queue->max, queue->low, queue->high));
+	int return_value = queue->data[queue->high--];
+	queue->count--;
+	if (queue->high < 0) {
+		queue->high = queue->max - 1;
+	}
+	DEBUG_PRINTF(("DEBUG: queue_get %d end capacity=%d/%d range=%d/%d\n", return_value, queue->count, queue->max, queue->low, queue->high));
 	return return_value;
 }
