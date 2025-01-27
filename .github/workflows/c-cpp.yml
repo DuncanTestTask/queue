@@ -1,0 +1,25 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: make clean
+      run: make clean
+    - name: make test DEBUG=1
+      run: make test DEBUG=1
+    - name: make testing DEBUG=1
+      run: make testing DEBUG=1
+    - name: make clean
+      run: make clean
+    - name: make all
+      run: make all
