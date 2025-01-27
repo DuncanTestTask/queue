@@ -13,5 +13,5 @@ Make a test task
 - Fully functional code
 - Test coverage
 - extra
-    - documentation
+- documentation
 

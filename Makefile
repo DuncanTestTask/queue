@@ -7,7 +7,7 @@ OBJ=$(SRC:.c=.o)
 TEST_SRC=test_queue.c
 TEST_OBJ=$(TEST_SRC:.c=.o)
 
-CFLAGS += -g -O0 -fPIC -no-pie
+CFLAGS += -g -O0
 #CFLAGS += -Os
 
 all: lib.a

@@ -9,6 +9,6 @@ struct queue {
 };
 
 struct queue *queue_init (size_t size);
-void queue_free (struct queue *q);
-void queue_add (struct queue *q, int a);
-int queue_get (struct queue *q);
+void queue_free (struct queue *queue);
+void queue_add (struct queue *queue, int item);
+int queue_get (struct queue *queue);

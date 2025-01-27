@@ -1,5 +1,5 @@
 
-// from https://jera.com/techinfo/jtns/jtn002
+// Taken from https://jera.com/techinfo/jtns/jtn002
 #define mu_assert(message, test)                                               \
   do {                                                                         \
     if (!(test))                                                               \
