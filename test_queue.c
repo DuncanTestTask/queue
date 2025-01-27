@@ -81,6 +81,17 @@ static char *test_queue_get2() {
   return 0;
 }
 
+static char *test_queue_overflow() {
+  const int queue_size = 3;
+  struct queue *test_queue = queue_init(queue_size);
+  for (int i=0;i<queue_size+1;i++) {
+    queue_add(test_queue, i);
+  }
+  queue_free(test_queue);
+  return 0;
+}
+
+
 
 static char *tests() {
   mu_run_test(test_queue_init_basic1);
@@ -88,6 +99,7 @@ static char *tests() {
   mu_run_test(test_queue_add2);
   mu_run_test(test_queue_get1);
   mu_run_test(test_queue_get2);
+  mu_run_test(test_queue_overflow);
   return 0;
 }
 
